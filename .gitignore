@@ -1,0 +1,7 @@
+node_modules/
+*.tgz
+.playwright-cli/
+*.png
+docs/screenshots/*
+!docs/screenshots/.gitkeep
+.DS_Store
