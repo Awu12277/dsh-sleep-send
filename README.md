@@ -25,34 +25,46 @@ DSH Web 的**定时发送** Cordis 客户端插件：在输入框右侧提供「
 
 > 说明：`docs/screenshots/` 目录当前为空，三个占位图片将在补图后替换。
 
-## 安装
+## 安装（推荐）
+
+`dsh-sleep-send` 是一个标准的 **DSH web 插件包**（bundle），一条命令即可装入 web profile：
+
+```bash
+dsh plugin --profile web add dsh-sleep-send
+```
+
+该命令会：在 `~/.dsh/profiles/web` 中执行 `pnpm add dsh-sleep-send`，随后 **reconcile** —— 因本包声明了 `dsh.bundle.patch`，会被自动追加到 profile 的 `dsh.profile.bundles` 层；浏览器端（client half）由 `dsh-client-modules` 根据 `dsh.client.platform: "web"` 自动拾取加载。重启 `dsh web` 后生效。
+
+移除：
+
+```bash
+dsh plugin --profile web remove dsh-sleep-send
+```
+
+也可以作为普通库安装（源码 / 集成参考）：
 
 ```bash
 npm install dsh-sleep-send
 ```
 
-包导出 `apply(ctx)`（Cordis 插件 client half），以及 `meta` 元信息：
+包结构（DSH web 插件协议）：
 
-```js
-import dshSleepSend, { apply, meta } from 'dsh-sleep-send'
-
-console.log(meta) // { id: 'dsh-sleep-send', name: '定时发送', ... }
-// 在 DSH Web 的会话上下文中将 apply 注册为 client half
+```
+dsh-sleep-send/
+├── index.js          # host 侧 cordis 插件骨架（纯 client 插件，无 host 逻辑）
+├── client.js         # 浏览器端：window.__ModuleLoader__.load({ id, factory })
+├── cordis.patch.yml  # bundle patch：注册 dsh-sleep-send 条目
+└── package.json      # dsh.bundle.patch + dsh.client.platform: "web"
 ```
 
 ## 运行环境
 
-- **DSH Web**（DeepSeek Harness 的浏览器界面）。插件运行于 client runner：
-  - `ctx`、`React`（createElement / useState / useEffect）、`styles` 由 DSH client runner 注入；
-  - `timer`、`slots` 通过 `ctx.get()` 获取；
-  - 需要 `conversation.input.right` 与 `conversation.input.overlay` 两个槽位。
-- 不依赖任何运行时依赖，纯 ESM 源码发布（`"type": "module"`），无需构建。
-
-### 在 DSH 中手动加载（开发）
-
-1. 打开侧边栏「🔌 Cordis 插件」面板；
-2. 点击「运行」加载包含本插件 client half 的包；
-3. 刷新页面后需在插件面板中重新点一次「运行」（动态 Client 插件按页面实例运行，任务数据保存在 `localStorage`，不会丢失）。
+- **DSH Web**（DeepSeek Harness 的浏览器界面）。client bundle 运行于浏览器页面：
+  - `require("react")` 获取 React；`apply(ctx)` 中的 `ctx` 为 client root context；
+  - 通过 `ctx.get("slots")` 访问 `conversation.input.right` 与 `conversation.input.overlay` 槽位；
+  - 调度定时器优先使用 cordis `timer` 服务，缺失时自动降级为浏览器定时器；
+  - 任务与偏好持久化在 `localStorage['dsh.sched-send.v1']`，刷新页面后自动恢复。
+- 纯 ESM、零运行时依赖、无需构建。
 
 ## 使用
 

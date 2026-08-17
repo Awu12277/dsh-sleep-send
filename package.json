@@ -1,25 +1,40 @@
 {
   "name": "dsh-sleep-send",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "DSH Web 定时发送插件：在输入框旁提供定时发送按钮与配置，支持智能时段（12:00–14:00 / 18:00–次日 08:00 内最近时间）、自定义日期时间、多个定时任务，并通过 localStorage 持久化任务。",
   "type": "module",
-  "main": "src/index.js",
+  "main": "index.js",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
   },
   "files": [
-    "src",
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
     "README.md",
     "LICENSE"
   ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  },
   "scripts": {
-    "test": "node --check src/index.js"
+    "test": "node --check index.js && node --check client.js"
   },
   "keywords": [
     "dsh",
+    "deepseek",
     "deepseek-harness",
     "cordis",
     "plugin",
+    "dsh-plugin",
     "scheduled-send",
     "timer",
     "chat"
