@@ -1,6 +1,6 @@
 {
   "name": "dsh-sleep-send",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "DSH Web 定时发送插件：在输入框旁提供定时发送按钮与配置，支持智能时段（12:00–14:00 / 18:00–次日 08:00 内最近时间）、自定义日期时间、多个定时任务，并通过 localStorage 持久化任务。清新天蓝主题。",
   "type": "module",
   "main": "index.js",

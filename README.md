@@ -33,10 +33,12 @@ DSH Web 的**定时发送** Cordis 客户端插件：在输入框右侧提供「
 `dsh-sleep-send` 是一个标准的 **DSH web 插件包**（bundle），一条命令即可装入 web profile：
 
 ```bash
-dsh plugin --profile web add dsh-sleep-send
+dsh plugin --profile web add dsh-sleep-send@latest
 ```
 
-该命令会：在 `~/.dsh/profiles/web` 中执行 `pnpm add dsh-sleep-send`，随后 **reconcile** —— 因本包声明了 `dsh.bundle.patch`，会被自动追加到 profile 的 `dsh.profile.bundles` 层；浏览器端（client half）由 `dsh-client-modules` 根据 `dsh.client.platform: "web"` 自动拾取加载。重启 `dsh web` 后生效。
+`@latest` 让 npm 始终解析当前最新版本，**无需手动指定版本号**——后续发版后再次执行同一条命令即可拉到最新版。
+
+该命令会：在 `~/.dsh/profiles/web` 中执行 `pnpm add dsh-sleep-send@latest`，随后 **reconcile** —— 因本包声明了 `dsh.bundle.patch`，会被自动追加到 profile 的 `dsh.profile.bundles` 层；浏览器端（client half）由 `dsh-client-modules` 根据 `dsh.client.platform: "web"` 自动拾取加载。重启 `dsh web` 后生效。
 
 移除：
 
