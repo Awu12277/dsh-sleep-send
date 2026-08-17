@@ -1,4 +1,10 @@
-# dsh-sleep-send
+<h1 align="center">dsh-sleep-send</h1>
+<p align="center">
+  <a href="https://www.npmjs.com/package/dsh-sleep-send"><img src="https://img.shields.io/npm/v/dsh-sleep-send?style=flat-square&color=00ff41&labelColor=050607" alt="npm version"></a>
+  <a href="https://github.com/Awu12277/dsh-sleep-send"><img src="https://img.shields.io/github/stars/Awu12277/dsh-sleep-send?style=flat-square&color=00ff41&labelColor=050607" alt="GitHub stars"></a>
+  <img src="https://img.shields.io/badge/license-MIT-ff1493?style=flat-square&labelColor=050607" alt="MIT">
+</p>
+
 
 DSH Web 的**定时发送** Cordis 客户端插件：在输入框右侧提供「定时发送」按钮与配置面板，支持智能时段、自定义日期时间、多个定时任务，并通过 `localStorage` 持久化任务，刷新页面后自动恢复。
 
