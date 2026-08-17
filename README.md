@@ -16,14 +16,11 @@ DSH Web 的**定时发送** Cordis 客户端插件：在输入框右侧提供「
 
 ## 截图
 
-> 🖼️ 截图占位 —— 待补充实际运行截图。
-> 请将截图放入 `docs/screenshots/` 并替换下方占位链接（或直接替换为 GitHub 相对路径）。
-
 | 工具行按钮与武装芯片 | 配置弹窗（智能时段） | 配置弹窗（自定义日期时间） |
 | :---: | :---: | :---: |
-| ![按钮与芯片占位](docs/screenshots/placeholder-1.png) | ![智能时段占位](docs/screenshots/placeholder-2.png) | ![自定义日期占位](docs/screenshots/placeholder-3.png) |
+| ![工具行按钮与武装芯片](docs/screenshots/toolbar-armed-chip.png) | ![配置弹窗-智能时段](docs/screenshots/popover-smart-window.png) | ![配置弹窗-自定义日期时间](docs/screenshots/popover-custom-datetime.png) |
 
-> 说明：`docs/screenshots/` 目录当前为空，三个占位图片将在补图后替换。
+> 截图为清新天蓝主题；替换 `docs/screenshots/` 下同名文件即可更新。
 
 ## 安装（推荐）
 
